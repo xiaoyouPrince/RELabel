@@ -2,7 +2,8 @@
 
 ## 框架的作用
 
-用于识别Label中的@用户-话题##-链接
+1. 用于识别Label中的@用户-话题##-链接
+2. 识别特定字符串 "协议" 等
 
 框架地址:https://github.com/xiaoyouPrince/RELabel
 
@@ -18,34 +19,31 @@
   - 直接将RELabel.swift拖入项目
 - 将UIlabel修改为RELabel
 - 按照下列方式监听点击即可
-- OC监听方式
-
-```objc
-
-self.demoLabel.userTapHandler = ^(RELabel *label, NSString *user, NSRange range){
-        NSLog(@"%@", label);
-        NSLog(@"%@", user);
-        NSLog(@"%@", NSStringFromRange(range));
-    };
-    
-    self.demoLabel.linkTapHandler = ^(RELabel *label, NSString *link, NSRange range){
-        NSLog(@"%@", label);
-        NSLog(@"%@", link);
-        NSLog(@"%@", NSStringFromRange(range));
-    };
-    
-    self.demoLabel.userTapHandler = ^(RELabel *label, NSString *topic, NSRange range){
-        NSLog(@"%@", label);
-        NSLog(@"%@", topic);
-        NSLog(@"%@", NSStringFromRange(range));
-    };
-
-```
-    
- 
 - swift监听方式
 
 ```swift
+
+
+      /// 设置匹配完成后的文字颜色（可选）
+      //  label.matchTextColor = UIColor.red
+
+
+      /// 匹配类型（可选） -- 默认 用户、连接、话题
+      /**
+       NoneTapHandler = 0   取消所有默认匹配
+       UserTapHandler
+       TopicTapHandler
+       LinkTapHandler
+       */
+      label.matchTypes = [.UserTapHandler, .LinkTapHandler]
+
+
+      /// 设置自定义匹配内容（可选。实际是自定义匹配正则表达式） 此属性和上面不可公用！
+      label.customMatchString = "\\d\\d"
+
+
+
+
     // 监听@谁谁谁的点击
     demoLabel.userTapHandler = { (label, user, range) in
         print(label)
@@ -66,4 +64,12 @@ self.demoLabel.userTapHandler = ^(RELabel *label, NSString *user, NSRange range)
         print(topic)
         print(range)
     }
+    
+    /// 监听用户自定义String点击
+      label.customTapHandler = { (label , customStr , range) in
+
+          print(label)
+          print(customStr)
+          print((NSStringFromRange(range)))
+      }
 ``` 
