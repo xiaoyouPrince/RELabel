@@ -3,7 +3,7 @@
 ## 框架的作用
 
 1. 用于识别Label中的@用户-话题##-链接
-2. 识别特定字符串 "协议" 等
+2. 识别自定义字符串 "协议"、"办法" 等
 
 框架地址:https://github.com/xiaoyouPrince/RELabel
 
@@ -19,7 +19,7 @@
   - 直接将RELabel.swift拖入项目
 - 将UIlabel修改为RELabel
 - 按照下列方式监听点击即可
-- swift监听方式
+- swift使用和监听方式
 
 ```swift
 
@@ -44,28 +44,34 @@
 
 
 
-    // 监听@谁谁谁的点击
-    demoLabel.userTapHandler = { (label, user, range) in
-        print(label)
-        print(user)
-        print(range)
-    }
-    
-    // 监听链接的点击
-    demoLabel.linkTapHandler = { (label, link, range) in
-        print(label)
-        print(link)
-        print(range)
-    }
-    
-    // 监听话题的点击
-    demoLabel.topicTapHandler = { (label, topic, range) in
-        print(label)
-        print(topic)
-        print(range)
-    }
-    
-    /// 监听用户自定义String点击
+      /// 监听连接点击
+      label.linkTapHandler = { (label , link , range) in
+
+          print(label)
+          print(link)
+          print((NSStringFromRange(range)))
+      }
+
+
+      /// 监听用户点击
+      label.userTapHandler = { (label , user , range) in
+
+          print(label)
+          print(user)
+          print((NSStringFromRange(range)))
+      }
+
+
+      /// 监听话题点击
+      label.topicTapHandler = { (label , topic , range) in
+
+          print(label)
+          print(topic)
+          print((NSStringFromRange(range)))
+      }
+
+
+      /// 监听用户自定义String点击
       label.customTapHandler = { (label , customStr , range) in
 
           print(label)
