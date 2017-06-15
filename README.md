@@ -10,7 +10,7 @@
 
 * 如图所示
 * 并且可以监听点击
-* ![RELabel-w140](http://oozx6yayl.bkt.clouddn.com/RELabel.png)
+* ![RELabel-w140](Image/RELabel.png)
 
 ## 使用方式
 
