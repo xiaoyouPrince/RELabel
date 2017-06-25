@@ -224,17 +224,20 @@
 					B4038EB61EFD64CE000AC8C8 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = J9CJUEB6H8;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					B4038ECF1EFD64CF000AC8C8 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = J9CJUEB6H8;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B4038EB61EFD64CE000AC8C8;
 					};
 					B4038EDA1EFD64CF000AC8C8 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = J9CJUEB6H8;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B4038EB61EFD64CE000AC8C8;
 					};
@@ -452,6 +455,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.pb.RELabel-OCDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -464,6 +468,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.pb.RELabel-OCDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -477,6 +482,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.pb.RELabel-OCDemoTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RELabel-OCDemo.app/RELabel-OCDemo";
 			};
 			name = Debug;
@@ -491,6 +497,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.pb.RELabel-OCDemoTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RELabel-OCDemo.app/RELabel-OCDemo";
 			};
 			name = Release;
@@ -504,6 +511,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.pb.RELabel-OCDemoUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "RELabel-OCDemo";
 			};
 			name = Debug;
@@ -517,6 +525,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.pb.RELabel-OCDemoUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "RELabel-OCDemo";
 			};
 			name = Release;
@@ -540,6 +549,7 @@
 				B4038EE61EFD64CF000AC8C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4038EE71EFD64CF000AC8C8 /* Build configuration list for PBXNativeTarget "RELabel-OCDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -548,6 +558,7 @@
 				B4038EE91EFD64CF000AC8C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4038EEA1EFD64CF000AC8C8 /* Build configuration list for PBXNativeTarget "RELabel-OCDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -556,6 +567,7 @@
 				B4038EEC1EFD64CF000AC8C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

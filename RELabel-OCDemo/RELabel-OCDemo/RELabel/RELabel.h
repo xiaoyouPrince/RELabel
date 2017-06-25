@@ -10,4 +10,16 @@
 
 @interface RELabel : UILabel
 
+typedef NS_ENUM(NSInteger , TapHandlerType){
+  
+    TapHandlerTypeNone = 0 ,
+    TapHandlerTypeUser,
+    TapHandlerTypeTopic,
+    TapHandlerTypeLink
+};
+@property (nonatomic, assign) TapHandlerType tapType;
+
+
 @end
+
+
