@@ -10,13 +10,23 @@
 
 @interface RELabel : UILabel
 
+
+/**
+ 点击类型
+
+ - TapHandlerTypeNone: 无
+ - TapHandlerTypeUser: 用户
+ - TapHandlerTypeTopic: 话题
+ - TapHandlerTypeLink: 连接
+ */
 typedef NS_ENUM(NSInteger , TapHandlerType){
   
-    TapHandlerTypeNone = 0 ,
+    TapHandlerTypeNone = 0,
     TapHandlerTypeUser,
     TapHandlerTypeTopic,
     TapHandlerTypeLink
 };
+
 @property (nonatomic, assign) TapHandlerType tapType;
 
 
