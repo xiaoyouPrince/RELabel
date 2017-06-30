@@ -29,12 +29,12 @@
 
 @implementation RELabel
 
-- (void)setTapType:(TapHandlerType)tapType
-{
-    if (tapType == TapHandlerTypeNone) {
-        
-    }
-}
+//- (void)setTapType:(TapHandlerType)tapType
+//{
+//    if (tapType == TapHandlerTypeNone) {
+//        
+//    }
+//}
 
 #pragma mark -- 系统方法
 - (instancetype)initWithFrame:(CGRect)frame
@@ -91,7 +91,7 @@
     
     _matchTextColor = DEFAULT_MATCH_COLOR;
 //    _matchTypes = @[ @TapHandlerTypeUser, @TapHandlerTypeTopic, @TapHandlerTypeLink];
-    _matchTypes = @[ @1, @2, @3];
+    _matchTypes = TapHandlerTypeUser | TapHandlerTypeTopic | TapHandlerTypeLink;
     
     _textStorage = [NSTextStorage new];
     _textContainer = [NSTextContainer new];
@@ -105,9 +105,6 @@
     _tapType = TapHandlerTypeNone; // @0
   
 }
-
-
-
 
 
 #pragma mark -- 重写系统属性
@@ -155,12 +152,12 @@
     _customMatchString = customMatchString;
     
     // 如果用户自己设置自定义匹配字符串，直接匹配类型为空
-    self.matchTypes = @[ @0];
+    self.matchTypes = TapHandlerTypeNone;
     
     [self prepareText];
 }
 
-- (void)setMatchTypes:(NSArray *)matchTypes
+- (void)setMatchTypes:(TapHandlerType)matchTypes
 {
     _matchTypes = matchTypes;
     
@@ -209,46 +206,76 @@
     [self.textStorage setAttributedString:attrStringM];
     
     // 5.根据用户匹配类型进行对应匹配
-    for (NSNumber *number in self.matchTypes) {
-        
-        TapHandlerType type = TapHandlerTypeNone;
-        if ([number  isEqual: @0]) {
-            type = TapHandlerTypeNone;
-        }else if ([number  isEqual: @1]) {
-            type = TapHandlerTypeUser;
-        }else if ([number  isEqual: @2]) {
-            type = TapHandlerTypeTopic;
-        }else if ([number  isEqual: @3]) {
-            type = TapHandlerTypeLink;
-        }
-        
-        switch (type) {
-            case TapHandlerTypeNone:
-                
-                [self matchCustomString:self.customMatchString]; // 有就有，没有直接就空了
-                
-                break;
-                
-            case TapHandlerTypeUser:
-                
-                [self matchUser];
+    switch (self.matchTypes) {
+        case TapHandlerTypeNone:
 
-                break;
-            case TapHandlerTypeTopic:
-                
-                [self matchTopic];
-                
-                break;
-            case TapHandlerTypeLink:
-                
-                [self matchLink];
-                
-                break;
-                
-            default:
-                break;
-        }
+            [self matchCustomString:self.customMatchString]; // 有就有，没有直接就空了
+
+            break;
+
+        case TapHandlerTypeUser:
+
+            [self matchUser];
+
+            break;
+        case TapHandlerTypeTopic:
+
+            [self matchTopic];
+
+            break;
+        case TapHandlerTypeLink:
+
+            [self matchLink];
+
+            break;
+            
+        default:
+            break;
     }
+
+    
+    
+    
+//    for (NSNumber *number in self.matchTypes) {
+//        
+//        TapHandlerType type = TapHandlerTypeNone;
+//        if ([number  isEqual: @0]) {
+//            type = TapHandlerTypeNone;
+//        }else if ([number  isEqual: @1]) {
+//            type = TapHandlerTypeUser;
+//        }else if ([number  isEqual: @2]) {
+//            type = TapHandlerTypeTopic;
+//        }else if ([number  isEqual: @3]) {
+//            type = TapHandlerTypeLink;
+//        }
+//        
+//        switch (type) {
+//            case TapHandlerTypeNone:
+//                
+//                [self matchCustomString:self.customMatchString]; // 有就有，没有直接就空了
+//                
+//                break;
+//                
+//            case TapHandlerTypeUser:
+//                
+//                [self matchUser];
+//
+//                break;
+//            case TapHandlerTypeTopic:
+//                
+//                [self matchTopic];
+//                
+//                break;
+//            case TapHandlerTypeLink:
+//                
+//                [self matchLink];
+//                
+//                break;
+//                
+//            default:
+//                break;
+//        }
+//    }
     
     [self setNeedsDisplay];
 
@@ -256,27 +283,67 @@
 
 - (void)matchUser{
     
-    
+    // 匹配用户
+    NSArray *userRanges = [self getRangesForPattern:@"@[\\u4e00-\\u9fa5a-zA-Z0-9_-]*"];
+    if (userRanges.count) {
+        self.userRanges = userRanges;
+
+        for (NSString *rangeString in userRanges) {
+            [self.textStorage addAttribute:NSForegroundColorAttributeName value:self.matchTextColor range:NSRangeFromString(rangeString)];
+        }
+    }
 }
 
 - (void)matchTopic{
+    
+    // 匹配话题
+    NSArray *topicRanges = [self getRangesForPattern:@"#.*?#"];
+    if (topicRanges.count) {
+        self.topicRanges = topicRanges;
+        
+        for (NSString *rangeString in topicRanges) {
+            [self.textStorage addAttribute:NSForegroundColorAttributeName value:self.matchTextColor range:NSRangeFromString(rangeString)];
+        }
+    }
     
 }
 
 - (void)matchLink{
     
+    // 匹配连接
+    NSArray *linkRanges = [self getLinkRanges];
+    if (linkRanges.count) {
+        self.linkRanges = linkRanges;
+        
+        for (NSString *rangeString in linkRanges) {
+            [self.textStorage addAttribute:NSForegroundColorAttributeName value:self.matchTextColor range:NSRangeFromString(rangeString)];
+        }
+    }
 }
 
 - (void)matchCustomString:(NSString *)customString{
     
+    // 匹配话题
+    NSArray *customRanges = [self getRangesForPattern:customString];
+    if (customRanges.count) {
+        self.customRanges = customRanges;
+        
+        for (NSString *rangeString in customRanges) {
+            [self.textStorage addAttribute:NSForegroundColorAttributeName value:self.matchTextColor range:NSRangeFromString(rangeString)];
+        }
+    }
 }
+
+
+
+
+#pragma mark -- 字符串匹配的封装
 
 - (NSArray *)getRangesForPattern:(NSString *)pattern
 {
-    
-//    NSRange range = NSMakeRange(0, 0);
-//    
-////    NSArray *a = [NSArray arrayWithObjects:range, nil];
+    if (pattern == nil) {
+        return [NSArray new];
+    }
     
     NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:pattern options:0 error:nil];
     
@@ -285,21 +352,161 @@
 
 - (NSArray *)getLinkRanges{
     
-    NSDataDetector * detector = [NSDataDetector alloc] initWithTypes:<#(NSTextCheckingTypes)#> error:<#(NSError * _Nullable __autoreleasing * _Nullable)#>
+    NSDataDetector * detector = [[NSDataDetector alloc] initWithTypes:NSTextCheckingTypeLink error:nil];
+    
+    return [self getRangesFromResultWithRegex:detector];
     
 }
 
-- (NSArray *)getRangesFromResultWithRegex:(NSRegularExpression *)regex
+- (NSArray <NSString *> *)getRangesFromResultWithRegex:(NSRegularExpression *)regex
 {
+    // 匹配
+    NSArray *results = [regex matchesInString:self.textStorage.string options:0 range:NSMakeRange(0, self.textStorage.length)];
     
+    NSMutableArray *ranges = [NSMutableArray new];
+    for (NSTextCheckingResult *res in results) {
+        
+        NSRange range = res.range;
+        NSString *rangeString = NSStringFromRange(range);
+        
+        [ranges addObject:rangeString];
+    }
+    
+    return ranges;
 }
-
-
-
-#pragma mark -- 字符串匹配的封装
-
 
 #pragma mark -- 点击交互封装
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    // 记录点击
+    self.isSelected = YES;
+    
+    CGPoint selectedPoint = [touches.anyObject locationInView:self];
+    
+    self.selectedRange = [self getSelectRangeWithSelectedPoint:selectedPoint];
+    
+    // 判断是否处理了事件
+    if (self.selectedRange.length == 0) {
+        [super touchesBegan:touches withEvent:event];
+    }
+    
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    if (self.selectedRange.length == 0) {
+        [super touchesBegan:touches withEvent:event];
+        return;
+    }
+    
+    // 记录松开
+    self.isSelected = NO;
+    
+    [self setNeedsDisplay];
+    
+    NSString *contentText = [self.textStorage.string substringWithRange:self.selectedRange];
+    
+    // 用户点击匹配字符串的回调
+    if (self.matchTypes == TapHandlerTypeNone) {
+        if (self.customTapHandler) {
+            self.customTapHandler(self, contentText, self.selectedRange);
+        }
+        return; // 自动匹配完成直接退出
+    }
+    
+    // 匹配其他类型
+    switch (self.tapType) {
+        case TapHandlerTypeUser:
+            if (self.userTapHandler) {
+                self.userTapHandler(self, contentText, self.selectedRange);
+            }
+            break;
+        case TapHandlerTypeTopic:
+            if (self.topicTapHandler) {
+                self.topicTapHandler(self, contentText, self.selectedRange);
+            }
+            break;
+        case TapHandlerTypeLink:
+            if (self.linkTapHandler) {
+                self.linkTapHandler(self, contentText, self.selectedRange);
+            }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+- (NSRange)getSelectRangeWithSelectedPoint:(CGPoint)selectedPoint
+{
+//    if (self.textStorage.length == 0) {
+//        return;
+//    }
+    
+    // 1. 获取选中点，所在下标
+    NSUInteger index = [self.layoutManager glyphIndexForPoint:selectedPoint inTextContainer:self.textContainer];
+    
+    // 2. 根据用户匹配类型进行，匹配点击的返回
+    if (self.matchTypes == TapHandlerTypeNone) {
+        
+        // custom
+        for (NSString *customRangeStr in self.customRanges) {
+            
+            NSRange range = NSRangeFromString(customRangeStr);
+            if (index > range.location && index < range.location + range.length) {
+                
+                [self setNeedsDisplay];
+                self.tapType = TapHandlerTypeNone;
+                return range;
+            }
+        }
+        
+    }else
+    {
+        // user
+        for (NSString *userRangeStr in self.userRanges) {
+            
+            NSRange range = NSRangeFromString(userRangeStr);
+            if (index > range.location && index < range.location + range.length) {
+                
+                [self setNeedsDisplay];
+                self.tapType = TapHandlerTypeUser;
+                return range;
+            }
+        }
+        
+        // topic
+        for (NSString *topicRangeStr in self.topicRanges) {
+            
+            NSRange range = NSRangeFromString(topicRangeStr);
+            if (index > range.location && index < range.location + range.length) {
+                
+                [self setNeedsDisplay];
+                self.tapType = TapHandlerTypeTopic;
+                return range;
+            }
+        }
+        
+        // link
+        for (NSString *linkRangeStr in self.linkRanges) {
+            
+            NSRange range = NSRangeFromString(linkRangeStr);
+            if (index > range.location && index < range.location + range.length) {
+                
+                [self setNeedsDisplay];
+                self.tapType = TapHandlerTypeLink;
+                return range;
+            }
+        }
+        
+    }
+    
+    return NSMakeRange(0, 0);
+}
+
 
 #pragma mark -- 换行补充
 

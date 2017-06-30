@@ -20,18 +20,17 @@
  - TapHandlerTypeLink: 连接
  */
 typedef NS_ENUM(NSInteger , TapHandlerType){
-  
-    TapHandlerTypeNone = 0,
-    TapHandlerTypeUser,
-    TapHandlerTypeTopic,
-    TapHandlerTypeLink
+    
+    TapHandlerTypeNone    = 0,
+    TapHandlerTypeUser    = 1 << 0,   // 1
+    TapHandlerTypeTopic   = 1 << 1,   // 2
+    TapHandlerTypeLink    = 1 << 2    // 4
 };
 
 typedef void(^RETapHandler)(RELabel *, NSString *, NSRange);
 
 @property (nonatomic, assign) TapHandlerType tapType;
-
-@property (nonatomic, strong) NSArray *matchTypes;
+@property (nonatomic, assign) TapHandlerType matchTypes;
 @property (nonatomic, strong) UIColor *matchTextColor;
 @property (nonatomic, copy) NSString *customMatchString;
 

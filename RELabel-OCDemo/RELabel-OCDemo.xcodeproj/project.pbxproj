@@ -15,7 +15,6 @@
 		B4038ECA1EFD64CE000AC8C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4038EC81EFD64CE000AC8C8 /* LaunchScreen.storyboard */; };
 		B4038ED51EFD64CF000AC8C8 /* RELabel_OCDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4038ED41EFD64CF000AC8C8 /* RELabel_OCDemoTests.m */; };
 		B4038EE01EFD64CF000AC8C8 /* RELabel_OCDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4038EDF1EFD64CF000AC8C8 /* RELabel_OCDemoUITests.m */; };
-		B4038EEF1EFD65C9000AC8C8 /* RELabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4038EEE1EFD65C9000AC8C8 /* RELabel.swift */; };
 		B4038EF21EFD66CE000AC8C8 /* RELabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4038EF11EFD66CE000AC8C8 /* RELabel.m */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +52,6 @@
 		B4038EDB1EFD64CF000AC8C8 /* RELabel-OCDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RELabel-OCDemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4038EDF1EFD64CF000AC8C8 /* RELabel_OCDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RELabel_OCDemoUITests.m; sourceTree = "<group>"; };
 		B4038EE11EFD64CF000AC8C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B4038EEE1EFD65C9000AC8C8 /* RELabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RELabel.swift; sourceTree = "<group>"; };
 		B4038EF01EFD66CE000AC8C8 /* RELabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RELabel.h; sourceTree = "<group>"; };
 		B4038EF11EFD66CE000AC8C8 /* RELabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RELabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,7 +147,6 @@
 		B4038EED1EFD65C9000AC8C8 /* RELabel */ = {
 			isa = PBXGroup;
 			children = (
-				B4038EEE1EFD65C9000AC8C8 /* RELabel.swift */,
 				B4038EF01EFD66CE000AC8C8 /* RELabel.h */,
 				B4038EF11EFD66CE000AC8C8 /* RELabel.m */,
 			);
@@ -299,7 +296,6 @@
 				B4038EF21EFD66CE000AC8C8 /* RELabel.m in Sources */,
 				B4038EBF1EFD64CE000AC8C8 /* AppDelegate.m in Sources */,
 				B4038EBC1EFD64CE000AC8C8 /* main.m in Sources */,
-				B4038EEF1EFD65C9000AC8C8 /* RELabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,7 +471,6 @@
 		B4038EE81EFD64CF000AC8C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = J9CJUEB6H8;
 				INFOPLIST_FILE = "RELabel-OCDemoTests/Info.plist";
@@ -490,7 +485,6 @@
 		B4038EE91EFD64CF000AC8C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = J9CJUEB6H8;
 				INFOPLIST_FILE = "RELabel-OCDemoTests/Info.plist";
@@ -505,7 +499,6 @@
 		B4038EEB1EFD64CF000AC8C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = J9CJUEB6H8;
 				INFOPLIST_FILE = "RELabel-OCDemoUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -519,7 +512,6 @@
 		B4038EEC1EFD64CF000AC8C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = J9CJUEB6H8;
 				INFOPLIST_FILE = "RELabel-OCDemoUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "RELabel.h"
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet RELabel *label;
 
 @end
 
@@ -16,14 +19,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+
+//    self.label.matchTypes = TapHandlerTypeNone;
+    
+    
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+- (void)viewDidAppear:(BOOL)animated
+{
+    
+    RELabel *myLabel = [RELabel new];
+    
+    myLabel.frame = CGRectMake(50, 250, 250, 100);
+    
+    myLabel.text = @"@xiaoyouPrince : 你好，d434，这个话题#羊毛卷#的地址是https://github/xiaoyouPrince/RELabel";
+    
+    
+    
+//    self.label.matchTextColor = [UIColor redColor];
 
+}
 
 @end
