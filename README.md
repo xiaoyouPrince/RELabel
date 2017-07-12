@@ -7,7 +7,7 @@
 
 框架地址:https://github.com/xiaoyouPrince/RELabel
 
-**请使用Swift版，OC版本目前遗留一些Bug，最近比较忙未完全修正**
+**请使用Swift版，OC版本目前遗留一些Bug，最近比较忙未完全修正，尽快修正**
 
 ## 使用效果
 
