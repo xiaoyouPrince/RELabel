@@ -31,7 +31,7 @@
 {
     
     RELabel *myLabel = [RELabel new];
-    
+
     myLabel.frame = CGRectMake(50, 250, 250, 100);
     
     myLabel.text = @"@xiaoyouPrince : 你好，d434，这个话题#羊毛卷#的地址是https://github/xiaoyouPrince/RELabel";
